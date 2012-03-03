@@ -3,8 +3,12 @@ package com.mega;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsoluteLayout;
+import android.widget.LinearLayout;
 
 class MonitorThread implements Runnable
 {
@@ -26,20 +30,22 @@ class MonitorThread implements Runnable
 	
 }
 
-public class MegaEyesActivity extends Activity {
+public class MegaEyesActivity extends Activity {  
     /** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
 		//requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//setContentView(R.layout.main);
-		
-		
+		setContentView(R.layout.main);
 		
 		//VideoView videoView = (VideoView)findViewById(R.id.videoView);
 		//videoView.playVideo("/sdcard/testXvid.avi");		
-		VideoView vv = new VideoView(this);
-		setContentView(vv); 
+		VideoView vv = new VideoView(this); 
+		//setContentView(vv); 
+		
+		vv.bringToFront();
+		this.addContentView(vv, new AbsoluteLayout.LayoutParams(300, 300, 200, 200));
+		
 		//vv.playVideo("/sdcard/testXvid.avi");
 		vv.playVideo("/sdcard/Video/a7.avi");
 		

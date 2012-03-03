@@ -7,17 +7,20 @@ import java.nio.ByteBuffer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Bitmap.Config;
+import android.graphics.Paint.Style;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class VideoView extends View implements Runnable {
 
 	Paint mPaint = null;
 
-	int width = 320*2;
-	int height = 240*2;
+	int width = 720;
+	int height = 576;
 
 	byte[] mPixel = new byte[width * height * 4]; 
 
@@ -36,8 +39,15 @@ public class VideoView extends View implements Runnable {
 	public VideoView(Context context) {
 		super(context);
 		
+		LinearLayout layout = new LinearLayout(context);   //线性布局方式     
+		layout.setOrientation( LinearLayout.VERTICAL ); //控件对其方式为垂直排列     
+		layout.setBackgroundColor( 0xff00ffff );        //设置布局板的一个特殊颜色，这可以检验我们会话时候是否有地方颜色不正确！     
+		 
 		TextView tv = new TextView(context);
+		tv.setText("您好 1234567890");
 		tv.setVisibility(View.VISIBLE);
+		
+		mPaint = new Paint();  
 	}
 
 	public void playVideo(String file) {
@@ -54,8 +64,15 @@ public class VideoView extends View implements Runnable {
         super.onDraw(canvas);       	
         VideoBit.copyPixelsFromBuffer(buffer);
         canvas.drawBitmap(VideoBit, 0, 0, null); 
+        
+        mPaint.setStyle(Style.FILL); //设置填充  
+        canvas.drawRect(10, 10, 100, 100, mPaint); //绘制矩形  
+          
+        mPaint.setColor(Color.BLUE);  
+        canvas.drawText("我是被画出来的", 10, 120, mPaint);          
     }
 
+	
 	public void run() {
 		FileInputStream fileIS = null;
 		
@@ -102,7 +119,7 @@ public class VideoView extends View implements Runnable {
 			int curUsedBytes = 0;
 			try {
 				curUsedBytes = this.Decode(sockBuf, usedBytes, usefulBytes, mPixel);
-				Thread.sleep(40);
+				Thread.sleep(15);
 			} catch(Throwable e) {
 				e.printStackTrace();
 			}
