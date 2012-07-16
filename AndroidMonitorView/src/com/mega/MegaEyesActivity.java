@@ -44,10 +44,10 @@ public class MegaEyesActivity extends Activity {
 		//setContentView(vv); 
 		
 		vv.bringToFront();
-		this.addContentView(vv, new AbsoluteLayout.LayoutParams(300, 300, 200, 200));
+		this.addContentView(vv, new AbsoluteLayout.LayoutParams(300, 300, 300, 300));
 		
 		//vv.playVideo("/sdcard/testXvid.avi");
-		vv.playVideo("/sdcard/Video/a7.avi");
+		vv.playVideo("/sdcard/Video/s.es");
 		
 		//new Thread(new MonitorThread()).start();
 		

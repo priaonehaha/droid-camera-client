@@ -65,11 +65,11 @@ public class VideoView extends View implements Runnable {
         VideoBit.copyPixelsFromBuffer(buffer);
         canvas.drawBitmap(VideoBit, 0, 0, null); 
         
-        mPaint.setStyle(Style.FILL); //设置填充  
-        canvas.drawRect(10, 10, 100, 100, mPaint); //绘制矩形  
+        //mPaint.setStyle(Style.FILL); //设置填充  
+        //canvas.drawRect(10, 10, 100, 100, mPaint); //绘制矩形  
           
-        mPaint.setColor(Color.BLUE);  
-        canvas.drawText("我是被画出来的", 10, 120, mPaint);          
+        //mPaint.setColor(Color.BLUE);  
+        //canvas.drawText("我是被画出来的", 10, 120, mPaint);          
     }
 
 	
